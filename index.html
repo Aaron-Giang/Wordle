@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Wordle</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+
+
+    <div class = "navBar">
+      <div id = "navPadding"></div>
+      <h1 id = "navTitle">Wordle</h1>
+      <ul class = "navButtonBar">
+        <li><button class = "navButton" id ="darkModeButton">&#9681</button></li>
+        <li><button class = "navButton" id = "hintButton">&#63</button></li>
+        <li><button class = "navButton" id = "instructionButton">&#9432</button></li>
+      </ul>  
+
+    </div>
+
+    <div class ="gameContainer">
+
+      <div class = "game">
+      <img id = "congratImg" src="https://res.cloudinary.com/mkf/image/upload/v1675467141/ENSF-381/labs/congrats_fkscna.gif">
+      <ul class = "boxList main" id ="mainBoxList">
+        <ul class = "boxList">
+          <div id ='box00' class = "box"></div>
+          <div id ='box01' class = box></div>
+          <div id ='box02' class = box></div>
+          <div id ='box03' class = box></div>
+  
+        </ul>
+  
+        <ul class = "boxList">
+          <div id ='box10' class = box></div>
+          <div id ='box11' class = box></div>
+          <div id ='box12' class = box></div>
+          <div id ='box13' class = box></div>
+  
+        </ul>
+        <ul class = "boxList">
+          <div id ='box20' class = box></div>
+          <div id ='box21' class = box></div>
+          <div id ='box22' class = box></div>
+          <div id ='box23' class = box></div>
+  
+        </ul>
+        <ul class = "boxList">
+          <div id ='box30' class = box></div>
+          <div id ='box31' class = box></div>
+          <div id ='box32' class = box></div>
+          <div id ='box33' class = box></div>
+  
+        </ul>
+  
+      </ul>
+      <div id = "gameGrid"></div>
+      <button id = "restart" disabled >Start Over</button>
+      <p id = "loadBar">Loading...</p>
+      <div id ="winMessage" > </div>
+      <p id ="hint" class = "hidden"> </p>
+      <p id = "fail" class = "hidden"> </p>
+
+      </div>
+    <div id = "infoBox" class = "hidden">
+      <h2 id = "infoTitle">How To Play</h2>
+      <ul id = "infoList">
+        <li class = "infoItem">Start typing. The letters will appear in the boxes</li>
+        <li class = "infoItem">Remove letters with Backspace</li>
+        <li class = "infoItem">Hit Enter/Return to submit an answer</li>
+        <li class = "infoItem">Letters with green background are in the right spot</li>
+        <li class = "infoItem">Letters with yellow backgrounds exist in the word,but are in the wrong spot</li>
+        <li class = "infoItem">Letters with grey backgrounds do not exist in the word</li>
+        <li class = "infoItem">if you need a hint, click the <b>?</b> icon</li>
+
+      </ul>
+
+    </div>
+    </div>
+    <script src="./wordle.js"></script>
+
+    <p id = "tag">@AG</p>
+  </body>
+</html>
