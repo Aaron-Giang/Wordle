@@ -3,6 +3,8 @@ var arrayRow = 0;
 var arrayCol = 0;
 var currentWord = "NULL"
 var currentHint =""
+let gameDict = []
+let gameOver = false;
 const alphabetList = new Set(  
 ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 );
@@ -20,27 +22,172 @@ function updateGriddy(grid){
 
 //async function that reutrns dictionary of words
 async function getDict(){
-    const res = await fetch("https://api.masoudkf.com/v1/wordle", {
-    headers: {"x-api-key": "sw0Tr2othT1AyTQtNDUE06LqMckbTiKWaVYhuirv",},});
-
-    const dict = await res.json();
-
+    const dict = [
+        {
+          word: "Nerd",
+          hint: "You may be considered one, if you like Star Trek"
+        },
+        {
+          word: "Word",
+          hint: "What you're trying to guess in this game"
+        },
+        {
+          word: "Game",
+          hint: "What you're playing right now"
+        },
+        {
+          word: "Hint",
+          hint: "Clue to help you guess the word"
+        },
+        {
+          word: "Play",
+          hint: "What you do in a game"
+        },
+        {
+          word: "Four",
+          hint: "Number of letters in each word"
+        },
+        {
+          word: "Guess",
+          hint: "What you do to find the secret word"
+        },
+        {
+          word: "Time",
+          hint: "What you have to complete the game"
+        },
+        {
+          word: "Hint",
+          hint: "A clue that may lead to the word"
+        },
+        {
+          word: "Easy",
+          hint: "Not difficult"
+        },
+        {
+          word: "Hard",
+          hint: "Challenging or tough"
+        },
+        {
+          word: "Fish",
+          hint: "An aquatic creature"
+        },
+        {
+          word: "Tree",
+          hint: "A tall, woody plant"
+        },
+        {
+          word: "Moon",
+          hint: "Earth's natural satellite"
+        },
+        {
+          word: "Rain",
+          hint: "Water falling from the sky"
+        },
+        {
+          word: "Star",
+          hint: "A luminous celestial object"
+        },
+        {
+          word: "Mars",
+          hint: "The red planet"
+        },
+        {
+          word: "Gold",
+          hint: "A precious metal"
+        },
+        {
+          word: "Wind",
+          hint: "Moving air"
+        },
+        {
+          word: "Fire",
+          hint: "A source of heat and light"
+        },
+        {
+          word: "Wave",
+          hint: "An oscillation in the ocean"
+        },
+        {
+          word: "Book",
+          hint: "A written or printed work"
+        },
+        {
+          word: "Rain",
+          hint: "What falls from the sky when it's wet"
+        },
+        {
+          word: "Lion",
+          hint: "King of the jungle"
+        },
+        {
+          word: "Ship",
+          hint: "A large water vessel"
+        },
+        {
+          word: "Bear",
+          hint: "A furry mammal in the forest"
+        },
+        {
+          word: "Tree",
+          hint: "A natural source of shade"
+        },
+        {
+          word: "Star",
+          hint: "What shines in the night sky"
+        },
+        {
+          word: "Hand",
+          hint: "What you use to hold things"
+        },
+        {
+          word: "Band",
+          hint: "A musical group"
+        },
+        {
+          word: "Hike",
+          hint: "What you do in the mountains"
+        },
+        {
+          word: "Jump",
+          hint: "What you do off a trampoline"
+        },
+        {
+          word: "Kite",
+          hint: "What flies in the sky on a string"
+        },
+        {
+          word: "Lamp",
+          hint: "A source of light"
+        },
+        {
+          word: "Road",
+          hint: "Where you drive your car"
+        },
+        {
+          word: "Song",
+          hint: "What you sing in the shower"
+        },
+        {
+          word: "Wave",
+          hint: "What you do at a passing friend"
+        },
+        {
+          word: "Yard",
+          hint: "The area around your house"
+        },
+        {
+          word: "Time",
+          hint: "What you can't get back"
+        },
+      ];
+      
     return dict;
     
 }
 //gets the dictionary and starts up game when loaded
 document.addEventListener("DOMContentLoaded",async ()=>{
-    let dict = {};
 
-    try{
-        dict = await getDict();
-    }catch(e){
-        console.log("error");
-        console.log(e);
-    }
-
-
-    gameDict = dict.dictionary;
+    gameDict = await getDict();
     //remove load bar
     document.getElementById("loadBar").style.display = "none";
 
@@ -69,8 +216,6 @@ function reset(dict){
     arrayRow = 0;
     arrayCol = 0;
 
-    console.log(currentWord);
-    console.log(currentHint);
 
 
 }
@@ -116,7 +261,6 @@ function rowChanger(lastRow = false){
     }
 
 
-    console.log(numSucc);
 }
 
 function setup(dict){
@@ -127,9 +271,9 @@ function setup(dict){
     gameDict = dict;
 
     document.getElementById("restart").disabled = false;
-    console.log(gameDict)
 
     reset(gameDict);
+    
     document.getElementById('restart').onclick = function(){
         //resets board and game
         reset(gameDict);
@@ -177,7 +321,6 @@ function setup(dict){
         }
         //checking for backspace
         else if(name == "Backspace" && arrayCol > 0 && arrayCol<=4){
-            console.log("backed");
             arrayCol -=1;
             gameGridArray[arrayRow][arrayCol] = "";
             
@@ -204,8 +347,6 @@ function setup(dict){
         }
         
         updateGriddy(gameGridArray);
-        console.log(gameGridArray[arrayRow]);
-        console.log(arrayRow);
     
     },false);
     
