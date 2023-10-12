@@ -196,4 +196,23 @@ body {
 .dark{
   background-color: #222;
   color: #e6e6e6;
+  
+}
+
+.dark .box{
+  color: #e6e6e6;
+
+}
+
+.dark #hint ,
+.dark #winMessage
+{
+  background-color: rgb(75, 75, 75);
+  color: #e6e6e6;
+  
+}
+
+
+.dark #restart{
+  background-color: rgb(29, 54, 29);
 }
